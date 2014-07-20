@@ -1,7 +1,7 @@
-File.open('data.txt') do |f|
-    while f.gets
-        if /[^\x00-\x7F]/
-            puts "A non-ascii character is found at line #{$.}"
+File.open('data.txt') do |file|
+    file.each_line.with_index do |line, index|
+        if /[^\x00-\x7F]/ =~ line
+            puts "A non-ascii character is found at line #{index + 1}"
             break
         end
     end
